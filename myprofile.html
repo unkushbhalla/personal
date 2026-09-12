@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankush Bhalla — Personal Site</title>
+    <!-- SF Pro / Inter font stack styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #000000;
+            --bg-surface: rgba(255, 255, 255, 0.05);
+            --bg-surface-hover: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.12);
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+            --accent: #2997ff;
+            --accent-gradient: linear-gradient(135deg, #0071e3 0%, #40b5ff 100%);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-bottom: 80px;
+        }
+
+        /* Glassmorphic Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Container Layout */
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(41, 151, 255, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            border: 1px solid rgba(41, 151, 255, 0.2);
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 720px;
+            letter-spacing: -0.01em;
+            margin-bottom: 32px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-surface-hover);
+            transform: scale(1.02);
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Experience Bento Grid */
+        .timeline {
+            display: grid;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            background: var(--bg-surface-hover);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .company-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .total-duration {
+            font-size: 0.85rem;
+            color: var(--accent);
+            background: rgba(41, 151, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .role-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .role-list::before {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .role-item {
+            position: relative;
+        }
+
+        .role-item::before {
+            content: '';
+            position: absolute;
+            left: -21px;
+            top: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+        }
+
+        .role-item.current::before {
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .role-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .role-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Skills Pill Layout */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-pill {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: var(--radius-lg);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .skill-pill:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Education Layout */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .edu-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .edu-institution {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .edu-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .edu-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            max-width: 980px;
+            margin: 40px auto 0;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 0 40px 0; }
+            .nav-links { display: none; }
+            footer { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Ankush Bhalla</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Aspiring AI Product Manager
+            </div>
+            <h1>Ankush Bhalla</h1>
+            <p class="subtitle">
+                Sr. Operations Analyst specializing in Real-time Monitoring, BizOps, and Payments Acceptance at Amazon Pay.
+            </p>
+            <div class="location">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Bengaluru, Karnataka, India
+            </div>
+            <div class="cta-group">
+                <a href="mailto:ankush.bhalla37@gmail.com" class="btn btn-primary">Contact Me</a>
+                <a href="https://www.linkedin.com/in/ankush-bhalla-87b41b12b" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile ↗</a>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="timeline">
+                
+                <!-- Amazon Pay India -->
+                <div class="card">
+                    <div class="company-header">
+                        <div class="company-name">Amazon Pay India</div>
+                        <div class="total-duration">4 yrs 3 mos total</div>
+                    </div>
+                    <div class="role-list">
+                        <div class="role-item current">
+                            <div class="role-title">Senior Operations Analyst</div>
+                            <div class="role-meta">Dec 2024 – Present · Bengaluru</div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">Operations Analyst</div>
+                            <div class="role-meta">Nov 2022 – Dec 2024 · 2 yrs 2 mos · Bengaluru</div>
+                        </div>
+                        <div class="role-item">
+                            <div class="role-title">KYC Investigator</div>
+                            <div class="role-meta">Jul 2022 – Nov 2022 · 5 mos · Noida</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amazon -->
+                <div class="card">
+                    <div class="company-header">
+                        <div class="company-name">Amazon</div>
+                    </div>
+                    <div class="role-list">
+                        <div class="role-item">
+                            <div class="role-title">Technical Support Associate</div>
+                            <div class="role-meta">Aug 2020 – Jul 2022 · 2 yrs · Noida</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outlook Publishing -->
+                <div class="card">
+                    <div class="company-header">
+                        <div class="company-name">Outlook Publishing (India) Pvt. Ltd.</div>
+                    </div>
+                    <div class="role-list">
+                        <div class="role-item">
+                            <div class="role-title">Sales And Marketing Intern</div>
+                            <div class="role-meta">May 2019 – Jul 2019 · 3 mos · New Delhi</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Top Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <h2 class="section-title">Core Expertise</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-pill">Authorization</div>
+                <div class="skill-pill">Application Programming Interfaces (API)</div>
+                <div class="skill-pill">Authentication Protocols</div>
+                <div class="skill-pill">Real-time Monitoring</div>
+                <div class="skill-pill">BizOps & Payments Acceptance</div>
+                <div class="skill-pill">HelloPM — AI Product Management</div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-institution">NMIMS</div>
+                        <div class="edu-degree">Master of Business Administration (MBA)</div>
+                    </div>
+                    <div class="edu-date">2021 – 2023</div>
+                </div>
+
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-institution">Ramjas College, Delhi</div>
+                        <div class="edu-degree">Diploma of Education, Spanish Language and Literature</div>
+                    </div>
+                    <div class="edu-date">Aug 2018 – Apr 2020</div>
+                </div>
+
+                <div class="edu-card">
+                    <div>
+                        <div class="edu-institution">Rukmini Devi Institute of Advanced Studies</div>
+                        <div class="edu-degree">Bachelor of Business Administration (BBA)</div>
+                    </div>
+                    <div class="edu-date">2017 – 2020</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div>© Ankush Bhalla. All rights reserved.</div>
+        <div>Designed with Apple HCI principles.</div>
+    </footer>
+
+</body>
+</html>
